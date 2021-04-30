@@ -2,6 +2,7 @@ const express = require('express')
 const router = express()
 const Expense = require('../../modules/Expense')
 const moment = require('moment')
+const data = require('../../data.json')
 
 router.get('/expenses', function (req, res) {
 
