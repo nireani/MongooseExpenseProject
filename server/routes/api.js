@@ -48,7 +48,13 @@ router.get('/expenses/:group', function (req, res) {
         })
     }
 })
-
+router.get('/expensesGroup', function (req, res) {
+ 
+            Expense.aggregate([{$group:{  _id: "$group",total:{$sum:"$amount"}}}], function (err, total) {
+                console.log(total);
+                res.send(total)
+            })
+        })
 
 router.post('/expense', function (req, res) {
     let amount = req.query.amount
@@ -61,7 +67,7 @@ router.post('/expense', function (req, res) {
     } else {
         date = moment().format('LLLL')
     }
-    
+    console.log(date );
     const newEx = new Expense({
         amount: amount,
         item: item,

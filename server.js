@@ -1,11 +1,18 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Expense = require('./modules/Expense')
+const Chart = require('chart.js');
+
 const app = express()
 const api = require('./server/routes/api')
 const data = require('./data.json')
 
 mongoose.connect("mongodb://localhost/mongoose-expense-project",{ useUnifiedTopology: true })
+
+const path = require('path')
+
+app.use(express.static(path.join(__dirname, 'dist')))
+app.use(express.static(path.join(__dirname, 'node_modules')))
 
 
 
