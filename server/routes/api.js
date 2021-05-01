@@ -24,7 +24,7 @@ router.get('/expenses', function (req, res) {
         ).sort({ date: -1 })
 
     }
-    if(!req.query.d1&&!req.query.d1){
+    if (!req.query.d1 && !req.query.d1) {
         Expense.find({}, function (err, allExpenses) {
             res.send(allExpenses);
         }).sort({ date: -1 })
@@ -50,12 +50,22 @@ router.get('/expenses/:group', function (req, res) {
     }
 })
 router.get('/expensesGroup', function (req, res) {
- 
-            Expense.aggregate([{$group:{  _id: "$group",total:{$sum:"$amount"}}}], function (err, total) {
-                console.log(total);
-                res.send(total)
-            })
-        })
+
+    Expense.aggregate([{ $group: { _id: "$group", total: { $sum: "$amount" } } }], function (err, total) {
+        console.log(total);
+        res.send(total)
+    })
+})
+router.get('/expensesGroupByDate', function (req, res) {
+    const startDate = moment(req.query.d1).format('LLLL')
+    console.log(startDate);
+    const endDate = moment(req.query.d2).format('LLLL')
+    console.log(endDate);
+
+    Expense.find({ $and: [{ date: { $gt: startDate } }, { date: { $lt: endDate } }] }, function (err, filteredExpenses) {
+        res.send(filteredExpenses);
+          })
+})
 
 router.post('/expense', function (req, res) {
     let amount = req.query.amount
@@ -68,7 +78,7 @@ router.post('/expense', function (req, res) {
     } else {
         date = moment().format('LLLL')
     }
-    console.log(date );
+    console.log(date);
     const newEx = new Expense({
         amount: amount,
         item: item,

@@ -1,9 +1,15 @@
-
+h4{
+    text-align: center;
+    background-color: #f2f2f2;
+}
 .table-container{
     display: inline-block;
     width: 40%;
+    
+}
+.tableList{
     background-color: #f2f2f2;
-     height: 26em; overflow: auto; 
+     height: 12em; overflow: auto; 
 }
 
 .chart-container{
@@ -50,6 +56,14 @@ th, td {
 
 
 input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+input[type=date], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

@@ -7,7 +7,7 @@ const app = express()
 const api = require('./server/routes/api')
 const data = require('./data.json')
 
-mongoose.connect("mongodb://localhost/mongoose-expense-project",{ useUnifiedTopology: true })
+mongoose.connect("mongodb://localhost/mongoose-expense-project",{ useUnifiedTopology: true ,useNewUrlParser: true } )
 
 const path = require('path')
 

@@ -19,17 +19,34 @@ const addExpenses = function () {
 }
 
 const renderExpenses = function () {
-    $.get('/expenses', function (expenses) {
-        $(".table-container").empty()
+    $.get('/expenses', function (AllExpenses) {
+        $(".tableList").empty()
         const source = $("#expense-template").html()
         const template = Handlebars.compile(source)
-        const newHTML = template({ expenses: expenses })
-        $(".table-container").append(newHTML)
+        const newHTML = template({ expenses: AllExpenses })
+        $(".tableList").append(newHTML)
         chartUpdate()
     })
 
 }
 renderExpenses()
+
+const filteredExpenses = function(){
+    const startDate = new Date($(".startDate").val()).toISOString().slice(0, 10);
+    console.log(startDate);
+    $('.startDate').val('');
+    const endDate = new Date($(".endDate").val()).toISOString().slice(0, 10);
+    console.log();
+    $(".endDate").val("")
+    $.get(`expenses?d1=${startDate}&d2=${endDate}`,function(filteredByDate){
+        console.log(filteredByDate);
+        $(".tableList").empty()
+        const source = $("#expense-template").html()
+        const template = Handlebars.compile(source)
+        const newHTML = template({ expenses: filteredByDate })
+        $(".tableList").append(newHTML)
+    })
+}
 
 
 

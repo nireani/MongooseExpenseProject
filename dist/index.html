@@ -22,16 +22,17 @@
             JQuery/HandleBars/Node.js/Express/Chart.js/API/Routes/MongoDB/Mongoose</h1>
         <div class="form">
             <form>
-                <label for="fname">Expense item</label>
+                <label >Expense item</label>
                 <input class="name" type="text" placeholder="Insert Expense item">
 
-                <label for="lname">Amount</label>
+                <label >Amount</label>
                 <input class="amount" type="text" placeholder="Insert Amount">
 
-                <label for="lname">Date</label>
-                <input class="date" type="text" placeholder="Insert Date in format YYYY-MM-DD">
-
-                <label for="country">Group</label>
+                <label >Date</label>
+                <input class="date" type="date">
+                
+                
+                <label >Group</label>
                 <select class="group" name="country">
                     <option value="fun">Fun</option>
                     <option value="bills">Bills</option>
@@ -43,11 +44,25 @@
                 <input onclick=addExpenses() type="submit" value="Add Expense">
             </form>
         </div>
+
         <div class="chart-container">
+            
+            
             <canvas class="nir" id="myChart"></canvas>
         </div>
-
+       
         <div class="table-container">
+            <h4>Expense Table By Date</h4>
+             <div class="tableList">
+             </div>
+             <input onclick=renderExpenses() type="submit" value="Display All Expenses">
+             <div class="filter">
+                <label >Start Date:</label>
+                <input  class="startDate" type="date">
+                <label >End Date:</label>
+                <input class="endDate" type="date">
+                <input onclick=filteredExpenses() type="submit" value="Filter By Date">
+             </div>
         </div>
 
 
@@ -81,7 +96,6 @@
     <script src="https://kit.fontawesome.com/d51e812162.js" crossorigin="anonymous"></script>
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/handlebars/dist/handlebars.js"></script>
-    <script src="main.js"></script>
     <script src="Renderer.js"></script>
     <script src="chart.js"></script>
 

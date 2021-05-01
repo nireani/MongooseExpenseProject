@@ -40,7 +40,19 @@ $.get('expensesGroup',function(group){
     }
     
     chartUpdate()  
-  
+
+    const filteredChartUpdate = function (){
+        let expenseLabels = []
+        let expenseData = []
+    $.get('expensesGroup',function(group){
+            group.forEach(g=>[expenseLabels.push(g._id),expenseData.push(g.total)])
+            
+             addData(expenseChartByGroup,expenseLabels,expenseData)
+           })
+        }
+        
+        chartUpdate()  
+   
 
     
 
