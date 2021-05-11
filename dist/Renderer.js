@@ -48,15 +48,17 @@ const filteredExpenses = function(){
    
 }
 
-const removeThis = function(id){
+const removeThis = async function(id){
     $.ajax({
         url: `expense?id=${id}`,
         type: 'DELETE',
-        success: function (result) {
+        success: await function (result) {
             console.log(result);
         }
     });
-    renderExpenses()
+    
+       await renderExpenses()
+
 }
 
 
