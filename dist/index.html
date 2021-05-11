@@ -36,9 +36,9 @@
                 <select class="group" name="country">
                     <option value="fun">Fun</option>
                     <option value="bills">Bills</option>
-                    <option value="Food">Food</option>
-                    <option value="Rent">Rent</option>
-                    <option value="other">Other</option>
+                    <option value="food">Food</option>
+                    <option value="rent">Rent</option>
+                    <option value="misc">Other</option>
                 </select>
 
                 <input onclick=addExpenses() type="submit" value="Add Expense">
@@ -75,16 +75,18 @@
         <table>
             <tr>
               <th>Date</th>
-              <th>Expense item</th>
-              <th>Amount spent</th>
-              <th>Item category</th>
+              <th><center>Expense item</center></th>
+              <th><center>Amount spent</center></th>
+              <th><center>Item category</center></th>
+              <th><center>Remove</center></th>
             </tr>
             {{#each expenses}}
             <tr>
-              <td>{{date}}</td>
-              <td>{{item}}</td>
-              <td>{{amount}}</td>
-              <td>{{group}}</td>
+              <td> {{date}}</td>
+              <td > <center>{{item}}</center></td>
+              <td> <center>{{amount}}</center></td>
+              <td> <center>{{group}}</center></td>
+              <td ><center><i id="{{_id}}" onclick=removeThis(this.id) class="far fa-trash-alt"></i></center></td>
             </tr>
             {{/each}}
           </table>

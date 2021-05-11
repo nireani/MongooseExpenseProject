@@ -7,7 +7,7 @@ const app = express()
 const api = require('./server/routes/api')
 const data = require('./data.json')
 
-mongoose.connect("mongodb://localhost/mongoose-expense-project",{ useUnifiedTopology: true ,useNewUrlParser: true } )
+mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost/mongoose-expense-project",{ useUnifiedTopology: true ,useNewUrlParser: true ,useFindAndModify: false} )
 
 const path = require('path')
 
@@ -30,7 +30,7 @@ const saveExpense = function(e){
 // data.forEach(d=>saveExpense(d))
     
 
-const port = 3006
+const port =process.env.PORT || 3006
 app.listen(port,function(){
     console.log(`server running on port ${port}`);
 })

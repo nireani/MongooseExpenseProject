@@ -20,6 +20,7 @@ const addExpenses = function () {
 
 const renderExpenses = function () {
     $.get('/expenses', function (AllExpenses) {
+        
         $(".tableList").empty()
         const source = $("#expense-template").html()
         const template = Handlebars.compile(source)
@@ -33,19 +34,29 @@ renderExpenses()
 
 const filteredExpenses = function(){
     const startDate = new Date($(".startDate").val()).toISOString().slice(0, 10);
-    console.log(startDate);
-    $('.startDate').val('');
     const endDate = new Date($(".endDate").val()).toISOString().slice(0, 10);
-    console.log();
-    $(".endDate").val("")
     $.get(`expenses?d1=${startDate}&d2=${endDate}`,function(filteredByDate){
-        console.log(filteredByDate);
         $(".tableList").empty()
         const source = $("#expense-template").html()
         const template = Handlebars.compile(source)
         const newHTML = template({ expenses: filteredByDate })
         $(".tableList").append(newHTML)
     })
+    $.get(`expensesGroupByDate?d1=${startDate}&d2=${endDate}`,function(filteredByDateGroupedToChart){
+        filteredChartUpdate(filteredByDateGroupedToChart)
+    })
+   
+}
+
+const removeThis = function(id){
+    $.ajax({
+        url: `expense?id=${id}`,
+        type: 'DELETE',
+        success: function (result) {
+            console.log(result);
+        }
+    });
+    renderExpenses()
 }
 
 

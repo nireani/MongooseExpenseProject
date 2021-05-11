@@ -1,7 +1,7 @@
 let expenseChart = document.getElementById('myChart').getContext('2d')
 let expenseLabels = []
 let expenseData = []
-let expenseColors =["#CC59D2","#FDCA40","#7AE7C7","#80A1D4","orange"]
+let expenseColors =["#CC59D2","#FDCA40","#7AE7C7","#b0fe76","#EF8275"]
 
 
 
@@ -34,25 +34,22 @@ const chartUpdate = function (){
     let expenseData = []
 $.get('expensesGroup',function(group){
         group.forEach(g=>[expenseLabels.push(g._id),expenseData.push(g.total)])
-        
          addData(expenseChartByGroup,expenseLabels,expenseData)
        })
     }
-    
     chartUpdate()  
 
-    const filteredChartUpdate = function (){
-        let expenseLabels = []
-        let expenseData = []
-    $.get('expensesGroup',function(group){
-            group.forEach(g=>[expenseLabels.push(g._id),expenseData.push(g.total)])
-            
-             addData(expenseChartByGroup,expenseLabels,expenseData)
-           })
-        }
-        
-        chartUpdate()  
-   
+const filteredChartUpdate = function (filteredByDateGroupedToChart){
+    let expenseLabels = []
+    let expenseData = []
+    filteredByDateGroupedToChart.forEach(g=>[expenseLabels.push(g._id),expenseData.push(g.total)])
+        console.log(expenseLabels,expenseData);
+         addData(expenseChartByGroup,expenseLabels,expenseData)
+       }
+    
+    
+
+    
 
     
 
