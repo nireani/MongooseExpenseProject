@@ -1,4 +1,4 @@
-const addExpenses = async function () {
+const addExpenses =  function () {
     const item = $(".name").val()
     $('.name').val('');
     const amount = $(".amount").val()
@@ -11,15 +11,15 @@ const addExpenses = async function () {
     $('.date').val('');
 
     document.getElementsByClassName('name').value = ''
-    $.post(`/expense?item=${item}&amount=${amount}&group=${group}&date=${date}`, await function () {
+    $.post(`/expense?item=${item}&amount=${amount}&group=${group}&date=${date}`, async function () {
       await  renderExpenses()
 
     })
 
 }
 
-const renderExpenses = async function () {
-    $.get('/expenses',  await function (AllExpenses) {
+const renderExpenses =  function () {
+    $.get('/expenses',  async function (AllExpenses) {
         
         $(".tableList").empty()
         const source = $("#expense-template").html()
@@ -42,8 +42,8 @@ const filteredExpenses = function(){
         const newHTML = template({ expenses: filteredByDate })
         $(".tableList").append(newHTML)
     })
-    $.get(`expensesGroupByDate?d1=${startDate}&d2=${endDate}`,function(filteredByDateGroupedToChart){
-        filteredChartUpdate(filteredByDateGroupedToChart)
+    $.get(`expensesGroupByDate?d1=${startDate}&d2=${endDate}`, async function(filteredByDateGroupedToChart){
+      await  filteredChartUpdate(filteredByDateGroupedToChart)
     })
    
 }
