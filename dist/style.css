@@ -1,3 +1,5 @@
+
+
 h4{
     text-align: center;
     background-color: #f2f2f2;
@@ -23,8 +25,10 @@ h4{
     margin-left: 1em;
 }
 
-h1{
+p{
     margin-left: 0.25em;
+    width: 100%;
+    font-size: 1.25em;
 }
 
 table{
@@ -87,4 +91,33 @@ input[type=date], select {
     background-color: #45a049;
   }
   
-  
+  @media screen and (max-width: 600px) {
+    .top-container{
+        margin-left: 1em;
+        display: grid;
+        grid-template-areas:
+        "p"
+        "t"
+        "c"
+        "f"
+    }
+    
+     .table-container{
+         grid-area: t;
+         width:95%;     
+   }
+
+   .chart-container{
+     grid-area: c;
+     width: 95%;
+ }
+
+ .form{
+    grid-area:f ; 
+    width: 95%;
+ }
+
+ p{
+     grid-area: p;
+ }
+}
