@@ -1,4 +1,4 @@
-const addExpenses = function () {
+const addExpenses = async function () {
     const item = $(".name").val()
     $('.name').val('');
     const amount = $(".amount").val()
@@ -11,22 +11,22 @@ const addExpenses = function () {
     $('.date').val('');
 
     document.getElementsByClassName('name').value = ''
-    $.post(`/expense?item=${item}&amount=${amount}&group=${group}&date=${date}`, function () {
-        renderExpenses()
+    $.post(`/expense?item=${item}&amount=${amount}&group=${group}&date=${date}`, await function () {
+      await  renderExpenses()
 
     })
 
 }
 
-const renderExpenses = function () {
-    $.get('/expenses', function (AllExpenses) {
+const renderExpenses = async function () {
+    $.get('/expenses',  await function (AllExpenses) {
         
         $(".tableList").empty()
         const source = $("#expense-template").html()
         const template = Handlebars.compile(source)
         const newHTML = template({ expenses: AllExpenses })
         $(".tableList").append(newHTML)
-        chartUpdate()
+      await  chartUpdate()
     })
 
 }
